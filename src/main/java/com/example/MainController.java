@@ -26,8 +26,17 @@ public class MainController {
     @FXML
     private Slider weightSlider;
 
+    @FXML
+    private Label bmiCategory;
     
     private Model model;
+    
+    private String getBmiLabel(float bmi) {
+		var text = "肥満";
+		if(bmi < 18.5) text = "痩せ型";
+		else if(bmi < 25) text = "普通";
+        return text;
+    }
     
     public void initModel(Model model) {
 		if (this.model != null)
@@ -43,6 +52,11 @@ public class MainController {
 		heightSlider.valueProperty().bindBidirectional(model.cmHeight);
 		weightSlider.valueProperty().bindBidirectional(model.kgWeight);	
 		
+		model.bmi.addListener((obs, oldVal, newVal) -> {
+			bmiCategory.setText(getBmiLabel(newVal.floatValue()));
+		});
+		bmiCategory.setText(getBmiLabel(model.bmi.floatValue()));
+				
 		// Event Handler
 		calcButton.setOnAction(e -> {
 			model.calc();
