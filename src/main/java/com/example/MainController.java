@@ -3,7 +3,6 @@ package com.example;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.util.converter.NumberStringConverter;
 
@@ -20,13 +19,6 @@ public class MainController {
     @FXML
     private TextField weightField;
     
-    @FXML
-    private Slider heightSlider;
-
-    @FXML
-    private Slider weightSlider;
-
-    
     private Model model;
     
     public void initModel(Model model) {
@@ -36,13 +28,10 @@ public class MainController {
     	this.model = model;
     	
     	// Bind Model to View
-		bmiLabel.textProperty().bind(model.bmi.asString());
+		bmiLabel.textProperty().bind(model.bmi.asString("%.1f"));
 		heightField.textProperty().bindBidirectional(model.cmHeight, new NumberStringConverter());
 		weightField.textProperty().bindBidirectional(model.kgWeight, new NumberStringConverter());
-		
-		heightSlider.valueProperty().bindBidirectional(model.cmHeight);
-		weightSlider.valueProperty().bindBidirectional(model.kgWeight);	
-		
+
 		// Event Handler
 		calcButton.setOnAction(e -> {
 			model.calc();

@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,7 +14,6 @@
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -31,8 +29,6 @@
             <Label text="体重(kg)" GridPane.rowIndex="1" />
             <Label text="BMI" GridPane.rowIndex="2" />
             <Button fx:id="calcButton" mnemonicParsing="false" text="計算" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Slider fx:id="heightSlider" min="25.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="2" />
-            <Slider fx:id="weightSlider" max="200.0" min="100.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
