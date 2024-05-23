@@ -1,7 +1,6 @@
 package com.example;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
@@ -10,9 +9,6 @@ import javafx.util.converter.NumberStringConverter;
 public class MainController {
     @FXML
     private Label bmiLabel;
-
-    @FXML
-    private Button calcButton;
 
     @FXML
     private TextField heightField;
@@ -37,13 +33,7 @@ public class MainController {
 		else if(bmi < 25) text = "普通";
         return text;
     }
-    
-    private void adjustBmiLabel() {   	
-		if (bmiLabel.getText().equals("NaN") || bmiLabel.getText().equals("Infinity")) {
-			bmiLabel.setText("");
-		}
-    }
-    
+
     public void initModel(Model model) {
 		if (this.model != null)
 			throw new IllegalStateException("Model can only be initialized once");
