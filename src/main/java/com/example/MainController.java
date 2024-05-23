@@ -38,6 +38,12 @@ public class MainController {
         return text;
     }
     
+    private void adjustBmiLabel() {   	
+		if (bmiLabel.getText().equals("NaN") || bmiLabel.getText().equals("Infinity")) {
+			bmiLabel.setText("");
+		}
+    }
+    
     public void initModel(Model model) {
 		if (this.model != null)
 			throw new IllegalStateException("Model can only be initialized once");
@@ -45,7 +51,18 @@ public class MainController {
     	this.model = model;
     	
     	// Bind Model to View
-		bmiLabel.textProperty().bind(model.bmi.asString());
+		bmiLabel.textProperty().bind(model.bmi.asString("%.1f"));
+    	// NanやInfinityの場合は空文字にするには次のようにカスタムのバインディングを使う
+    	/*
+		bmiLabel.textProperty().bind(Bindings.createStringBinding(() -> {
+            double value = model.bmi.doubleValue();
+            if (Double.isNaN(value) || Double.isInfinite(value)) {
+                return "";
+            } else {
+                return String.valueOf(value);
+            }
+        }, model.bmi));
+        */		
 		heightField.textProperty().bindBidirectional(model.cmHeight, new NumberStringConverter());
 		weightField.textProperty().bindBidirectional(model.kgWeight, new NumberStringConverter());
 		
@@ -55,12 +72,6 @@ public class MainController {
 		model.bmi.addListener((obs, oldVal, newVal) -> {
 			bmiCategory.setText(getBmiLabel(newVal.floatValue()));
 		});
-		bmiCategory.setText(getBmiLabel(model.bmi.floatValue()));
-				
-		// Event Handler
-		calcButton.setOnAction(e -> {
-			model.calc();
-        });			
     }
     
 	public void initialize() {
