@@ -36,7 +36,7 @@ public class MainController {
     	this.model = model;
     	
     	// Bind Model to View
-		bmiLabel.textProperty().bind(model.bmi.asString());
+		bmiLabel.textProperty().bind(model.bmi.asString("%.1f"));
 		heightField.textProperty().bindBidirectional(model.cmHeight, new NumberStringConverter());
 		weightField.textProperty().bindBidirectional(model.kgWeight, new NumberStringConverter());
 		
