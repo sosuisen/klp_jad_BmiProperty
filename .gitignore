@@ -2,7 +2,7 @@
 .gradle/
 bin/
 build/
-gradle/
+# gradle/ is needed for old buildship behavior
 .classpath
 .project
 
