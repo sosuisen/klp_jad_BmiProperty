@@ -55,9 +55,9 @@ public class MainController {
         */		
 		heightField.textProperty().bindBidirectional(model.cmHeight, new NumberStringConverter());
 		weightField.textProperty().bindBidirectional(model.kgWeight, new NumberStringConverter());
-		
-		heightSlider.valueProperty().bindBidirectional(model.cmHeight);
-		weightSlider.valueProperty().bindBidirectional(model.kgWeight);	
+
+		heightField.textProperty().bindBidirectional(heightSlider.valueProperty(), new NumberStringConverter());
+		weightField.textProperty().bindBidirectional(weightSlider.valueProperty(), new NumberStringConverter());
 		
 		model.bmi.addListener((obs, oldVal, newVal) -> {
 			bmiCategory.setText(getBmiLabel(newVal.floatValue()));
