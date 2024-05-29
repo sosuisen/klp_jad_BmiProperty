@@ -3,6 +3,6 @@
 module mvcapp {
     requires javafx.controls;
     requires javafx.fxml;
-	requires javafx.base;
-    opens com.example to javafx.graphics, javafx.fxml;
+    requires org.hildan.fxgson;    
+    opens com.example to javafx.graphics, javafx.fxml, com.google.gson;
 }

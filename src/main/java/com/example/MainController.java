@@ -41,7 +41,7 @@ public class MainController {
     	this.model = model;
     	
     	// Bind Model to View
-		bmiLabel.textProperty().bind(model.bmi.asString("%.1f"));
+		bmiLabel.textProperty().bind(model.bmi.bmi.asString("%.1f"));
     	// NanやInfinityの場合は空文字にするには次のようにカスタムのバインディングを使う
     	/*
 		bmiLabel.textProperty().bind(Bindings.createStringBinding(() -> {
@@ -53,13 +53,13 @@ public class MainController {
             }
         }, model.bmi));
         */		
-		heightField.textProperty().bindBidirectional(model.cmHeight, new NumberStringConverter());
-		weightField.textProperty().bindBidirectional(model.kgWeight, new NumberStringConverter());
+		heightField.textProperty().bindBidirectional(model.bmi.cmHeight, new NumberStringConverter());
+		weightField.textProperty().bindBidirectional(model.bmi.kgWeight, new NumberStringConverter());
 
 		heightField.textProperty().bindBidirectional(heightSlider.valueProperty(), new NumberStringConverter());
 		weightField.textProperty().bindBidirectional(weightSlider.valueProperty(), new NumberStringConverter());
 		
-		model.bmi.addListener((obs, oldVal, newVal) -> {
+		model.bmi.bmi.addListener((obs, oldVal, newVal) -> {
 			bmiCategory.setText(getBmiLabel(newVal.floatValue()));
 		});
     }

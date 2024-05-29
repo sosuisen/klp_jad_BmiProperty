@@ -23,6 +23,10 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+dependencies {
+	implementation 'org.hildan.fxgson:fx-gson:5.0.0'
+}
+
 javafx {
     version = "21"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
